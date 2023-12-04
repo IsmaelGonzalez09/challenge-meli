@@ -71,8 +71,18 @@ To solve the challenge, the API has the next endopints, that were config in the 
 
 ## Persistence Endpoint
 
-![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/6a949b3c-6d58-4084-b8f4-19dad56adc73)
+![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/b87182fb-327f-4c02-99b4-4f096b44baad)
 
 ## Post Scan Endpoint
 
+![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/cda2679e-c658-4e1e-8e82-5396ec710664)
+
+## Get Scan Endpoint
+
+![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/781bfbda-0918-4ace-b8e0-9cb5a7045091)
+![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/db054b9e-c055-4f07-92f1-c880ae0c828f)
+
+## Get HTML Endpoint
+
+![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/85922be1-65cd-4bc2-82cc-a86b7123eae0)
 
