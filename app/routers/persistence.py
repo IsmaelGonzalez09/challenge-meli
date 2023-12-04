@@ -1,4 +1,3 @@
-# app/routers/router.py
 from fastapi import APIRouter, HTTPException, status, Depends, Response
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session
@@ -13,7 +12,7 @@ import os
 load_dotenv()
 router = APIRouter()
 
-# Encriptacion de claves
+# Key Encript
 secret_key = os.getenv('SECRET_KEY')
 cipher_suite = Fernet(secret_key)
 
@@ -34,7 +33,7 @@ def store_connection_data(db: Session, host: str, port: int, user: str, password
         "data_base": db_name
     })
     db.commit()
-    return unique_id  # Retorna el UUID generado
+    return unique_id
 
 @router.post("/api/v1/database", tags=['Persistence'], status_code=status.HTTP_201_CREATED)
 def persist_database_connection(response: Response, connection_data: DatabaseConnection, db: Session = Depends(get_db)):
@@ -45,18 +44,16 @@ def persist_database_connection(response: Response, connection_data: DatabaseCon
         # Crea un motor temporal y prueba la conexión
         temp_engine = create_engine(temp_database_url)
         with temp_engine.connect() as temp_conn:
-            # Si se solicita, busca todas las bases de datos disponibles
+            # Busca todas las bases de datos disponibles
             result = temp_conn.execute(text("SHOW TABLES;"))
-            tables = [table[0] for table in result]
-            # Si necesitas el nombre de una base de datos específica, puedes solicitarlo aquí
-            # ...
+            [table[0] for table in result]
+
     except SQLAlchemyError as e:
         # Si hay un error de conexión, devuelve el código de estado correspondiente
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
-    # Si la conexión es exitosa, almacena los datos de conexión
     try:
-        # Almacena los datos de conexión utilizando la función 'store_connection_data'
+        # Si la conexión es exitosa, almacena los datos de conexión utilizando la función 'store_connection_data'
         unique_id = store_connection_data(
             db,
             connection_data.host,

@@ -20,19 +20,21 @@ cipher_suite = Fernet(secret_key)
 def decrypt_password(encrypted_password: str) -> str:
     return cipher_suite.decrypt(encrypted_password.encode()).decode()
 
-# Clasificación de nombres de columnas
+# Diccionario de Clasificación
 classification_rules = {
     "username": "USERNAME",
     "mail": "EMAIL_ADDRESS",
     "credit": "CREDIT_CARD_NUMBER"
 }
 
+# Funcion Regex para clasificar los datos
 def classify_column(column_name):
     for pattern, classification in classification_rules.items():
         if re.search(pattern, column_name, re.IGNORECASE):
             return classification
-    return "N/A"  # Devuelve "N/A" si no hay coincidencias
+    return "N/A"
 
+# Endpoint Post scan
 @router.post("/api/v1/database/scan/", tags=['Scan ID'])
 def post_database_connection(connection_data: PostScanSchema, db: Session = Depends(get_db)):
     # Genera un nuevo UUID para esta ejecución del proceso
@@ -42,10 +44,7 @@ def post_database_connection(connection_data: PostScanSchema, db: Session = Depe
     if not connection_data:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="ID de conexión no encontrado")
 
-    # Descifra la contraseña almacenada
     decrypted_password = decrypt_password(connection_data[4])
-
-    # Estructura para almacenar los resultados
     classification_results = {
         "database_name": connection_data[5],
         "tables": {}
@@ -53,16 +52,15 @@ def post_database_connection(connection_data: PostScanSchema, db: Session = Depe
 
     # Intenta conectarte con los datos descifrados para validarlos
     try:
-        # Construye la URL de conexión con los datos descifrados
+        # Construye la URL de conexión con los datos descifrados y prueba la conexión
         database_url = f"mysql+mysqlconnector://{connection_data[3]}:{decrypted_password}@{connection_data[1]}:{connection_data[2]}/{connection_data[5]}"
-        # Crea un motor y prueba la conexión
         engine = create_engine(database_url)
         with engine.connect() as conn:
             # Consulta todas las tablas de la base de datos
             tables_result = conn.execute(text("SHOW TABLES;"))
             tables = [table[0] for table in tables_result]
 
-            # Para cada tabla, consulta los nombres de las columnas y clasifícalos
+            # Consulta los nombres de las tablas y columnas
             for table_name in tables:
                 columns_result = conn.execute(text(f"SHOW COLUMNS FROM {table_name};"))
                 classification_results["tables"][table_name] = []
@@ -84,5 +82,4 @@ def post_database_connection(connection_data: PostScanSchema, db: Session = Depe
             db.commit()
             return {"message": "Classification Complete. Id: ", "process_id": process_id}
     except SQLAlchemyError as e:
-        # Si hay un error de conexión, devuelve el código de estado correspondiente
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))

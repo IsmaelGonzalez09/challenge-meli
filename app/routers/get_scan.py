@@ -6,14 +6,13 @@ import json
 
 router = APIRouter()
 
+# Endpoint to get classification by ID
 @router.get("/api/v1/classification/{classification_id}", tags=['Classification'])
 def get_classification_result(classification_id: str, db: Session = Depends(get_db)):
-    # Busca el resultado en la tabla 'classification' utilizando el ID proporcionado
+    # Search results in table 'classification' using the ID 
     classification_data = db.execute(text("SELECT result FROM classification WHERE id = :id"), {"id": classification_id}).fetchone()
     if not classification_data:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="ID de clasificación no encontrado")
-
-    # Convierte el resultado de la base de datos (cadena JSON) a un objeto Python
+    
     classification_result = json.loads(classification_data[0])
-
     return classification_result

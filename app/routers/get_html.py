@@ -7,17 +7,15 @@ import json
 
 router = APIRouter()
 
+# Endpoint to get classification by ID and draw tables in HTML
 @router.get("/api/v1/classification/html/{classification_id}", response_class=HTMLResponse, tags=['Classification'])
 def get_classification_html(classification_id: str, db: Session = Depends(get_db)):
-    # Busca el resultado en la tabla 'classification' utilizando el ID proporcionado
+    # Search info in 'classification' using the ID
     classification_data = db.execute(text("SELECT result FROM classification WHERE id = :id"), {"id": classification_id}).fetchone()
     if not classification_data:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="ID de clasificación no encontrado")
-
-    # Convierte el resultado de la base de datos (cadena JSON) a un objeto Python
     classification_result = json.loads(classification_data[0])
-
-    # Inicia la construcción del contenido HTML
+    # HTML
     html_content = f"""
     <!DOCTYPE html>
     <html lang="es">
@@ -115,7 +113,7 @@ def get_classification_html(classification_id: str, db: Session = Depends(get_db
         <div class="container">
     """
 
-    # Itera sobre cada tabla y sus columnas para construir las tablas HTML
+    # for to tables and columns in HTML
     for table_name, columns in classification_result["tables"].items():
         html_content += f"<h2>{table_name}</h2>"
         html_content += """
