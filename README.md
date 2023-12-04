@@ -14,12 +14,7 @@ This challenge was developed with the next tools:
 - MySQL
 - Python 3.10
 - FastAPI
-
-The main file initializing the Endpoints developed in this practice:
-- persistence: Endpoint for save the data connection of the BD to be scan. The passwords are saves encrypted.
-- post_scan: Enpoint for search BD in MySQL, scan this BD and save in other BD in MySQL.
-- get_scan: Get the data from scan of BD in the Endpoint "post_scan".
-- get_html: Get in HTML.
+- Some libraries (added in requirements.txt)
 
 Before to start, must to create a .env file to save the next environment variables:
 ```
@@ -56,3 +51,20 @@ CREATE TABLE USERS (
     created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
+
+## API Documentation
+
+Run this command line to run the app with your endpoints:
+```
+uvicorn app.main:app --reload
+```
+
+Now, we can to try the connection with the app calling the first endpoint:
+
+![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/5ffc9cbd-095c-4455-afeb-073304dc121f)
+
+To solve the challenge, the API has the next endopints, that were config in the main file:
+- persistence: Endpoint for save the data connection of the BD to be scan. The passwords are saves encrypted.
+- post_scan: Enpoint for search BD in MySQL, scan this BD and save in other BD in MySQL.
+- get_scan: Get the data from scan of BD in the Endpoint "post_scan".
+- get_html: Get in HTML.
