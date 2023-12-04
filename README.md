@@ -21,6 +21,17 @@ The main file initializing the Endpoints developed in this practice:
 - get_scan: Get the data from scan of BD in the Endpoint "post_scan".
 - get_html: Get in HTML.
 
+Before to start, must to create a .env file to save the next environment variables:
+```
+PERSISTENT_DB_HOST=localhost
+PERSISTENT_DB_PORT=3306
+PERSISTENT_DB_USER=usermeli
+PERSISTENT_DB_PASS=Test2023
+PERSISTENT_DB_NAME=persistent_data_db
+SECRET_KEY=kpje21xu4WpTYW0Mk9mB6-5nIh6sYP_i0KwT7L65er4=
+```
+This variables are to connect to the MySQL DB where will be save the results of scans.
+
 ## Create MySQL BD to be Scanned
 
 To create the BD to be Scanned, after of config the MySQL in localhost, run the next queries:
