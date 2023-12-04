@@ -52,7 +52,7 @@ CREATE TABLE USERS (
 );
 ```
 
-## API Documentation
+# API Documentation
 
 Run this command line to run the app with your endpoints:
 ```
@@ -68,3 +68,11 @@ To solve the challenge, the API has the next endopints, that were config in the 
 - post_scan: Enpoint for search BD in MySQL, scan this BD and save in other BD in MySQL.
 - get_scan: Get the data from scan of BD in the Endpoint "post_scan".
 - get_html: Get in HTML.
+
+## Persistence Endpoint
+
+![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/6a949b3c-6d58-4084-b8f4-19dad56adc73)
+
+## Post Scan Endpoint
+
+
