@@ -20,3 +20,5 @@ The main file initializing the Endpoints developed in this practice:
 - post_scan: Enpoint for search BD in MySQL, scan this BD and save in other BD in MySQL.
 - get_scan: Get the data from scan of BD in the Endpoint "post_scan".
 - get_html: Get in HTML.
+
+## Create MySQL BD
