@@ -21,4 +21,22 @@ The main file initializing the Endpoints developed in this practice:
 - get_scan: Get the data from scan of BD in the Endpoint "post_scan".
 - get_html: Get in HTML.
 
-## Create MySQL BD
+## Create MySQL BD to be Scanned
+
+To create the BD to be Scanned, after of config the MySQL in localhost, run the next queries:
+
+- Create the BD named "mysql_db_1":
+CREATE DATABASE mysql_db_1;
+
+- Select the DB:
+USE mysql_db_1;
+
+Create the Table named USERS:
+
+CREATE TABLE USERS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    USERNAME VARCHAR(255) NOT NULL,
+    EMAIL_ADDRESS VARCHAR(255) NOT NULL,
+    CREDIT_CARD_NUMBER VARCHAR(19) NOT NULL,
+    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
