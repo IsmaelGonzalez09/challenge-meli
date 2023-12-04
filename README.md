@@ -26,13 +26,17 @@ The main file initializing the Endpoints developed in this practice:
 To create the BD to be Scanned, after of config the MySQL in localhost, run the next queries:
 
 - Create the BD named "mysql_db_1":
+ ```sql
 CREATE DATABASE mysql_db_1;
+```
 
 - Select the DB:
+ ```sql
 USE mysql_db_1;
+```
 
 Create the Table named USERS:
-
+```sql
 CREATE TABLE USERS (
     id INT AUTO_INCREMENT PRIMARY KEY,
     USERNAME VARCHAR(255) NOT NULL,
@@ -40,3 +44,4 @@ CREATE TABLE USERS (
     CREDIT_CARD_NUMBER VARCHAR(19) NOT NULL,
     created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+```
