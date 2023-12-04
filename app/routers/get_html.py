@@ -13,7 +13,7 @@ def get_classification_html(classification_id: str, db: Session = Depends(get_db
     # Search info in 'classification' using the ID
     classification_data = db.execute(text("SELECT result FROM classification WHERE id = :id"), {"id": classification_id}).fetchone()
     if not classification_data:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="ID de clasificación no encontrado")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="ID Not Found.")
     classification_result = json.loads(classification_data[0])
     # HTML
     html_content = f"""
@@ -22,7 +22,7 @@ def get_classification_html(classification_id: str, db: Session = Depends(get_db
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Resultado de Clasificación</title>
+        <title>Classification Results</title>
         <style>
             body {{
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -101,11 +101,11 @@ def get_classification_html(classification_id: str, db: Session = Depends(get_db
         <header>
             <div class="container">
                 <div id="branding">
-                    <h1>Nombre de la Base de Datos: <span class="highlight">{classification_result["database_name"]}</span></h1>
+                    <h1>BD Name: <span class="highlight">{classification_result["database_name"]}</span></h1>
                 </div>
                 <nav>
                     <ul>
-                        <li class="current"><a href="http://127.0.0.1:8000/api/v1/classification/html/{classification_id}">Clasificación</a></li>
+                        <li class="current"><a href="http://127.0.0.1:8000/api/v1/classification/html/{classification_id}">Classification</a></li>
                     </ul>
                 </nav>
             </div>
@@ -119,7 +119,7 @@ def get_classification_html(classification_id: str, db: Session = Depends(get_db
         html_content += """
             <table>
                 <tr>
-                    <th>Nombre de la Columna</th>
+                    <th>Column Name</th>
                     <th>Clasificación</th>
                 </tr>
         """

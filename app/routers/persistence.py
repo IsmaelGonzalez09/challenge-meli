@@ -63,6 +63,6 @@ def persist_database_connection(response: Response, connection_data: DatabaseCon
             connection_data.db_name
         )
         response.status_code = status.HTTP_201_CREATED
-        return {"message": "Datos de conexión validados y almacenados con éxito", "Unique_id": unique_id}
+        return {"message": "Connection data saved.", "Unique_id": unique_id}
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))

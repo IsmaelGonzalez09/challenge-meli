@@ -12,7 +12,7 @@ def get_classification_result(classification_id: str, db: Session = Depends(get_
     # Search results in table 'classification' using the ID 
     classification_data = db.execute(text("SELECT result FROM classification WHERE id = :id"), {"id": classification_id}).fetchone()
     if not classification_data:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="ID de clasificación no encontrado")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="ID Not Found.")
     
     classification_result = json.loads(classification_data[0])
     return classification_result

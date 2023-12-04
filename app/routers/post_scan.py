@@ -42,7 +42,7 @@ def post_database_connection(connection_data: PostScanSchema, db: Session = Depe
     # Busca los datos de conexión en la base de datos utilizando el ID proporcionado
     connection_data = db.execute(text("SELECT * FROM connections WHERE id = :id"), {"id": connection_data.connection_id}).fetchone()
     if not connection_data:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="ID de conexión no encontrado")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="ID Not Found")
 
     decrypted_password = decrypt_password(connection_data[4])
     classification_results = {
@@ -80,6 +80,6 @@ def post_database_connection(connection_data: PostScanSchema, db: Session = Depe
                 "result": classification_json
             })
             db.commit()
-            return {"message": "Classification Complete. Id: ", "process_id": process_id}
+            return {"message": "Classification Complete.", "process_id": process_id}
     except SQLAlchemyError as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
