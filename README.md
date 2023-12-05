@@ -52,6 +52,35 @@ CREATE TABLE USERS (
 );
 ```
 
+## Create MySQL BD to save results
+
+- Create the BD named "persistent_data_db":
+```sql
+CREATE DATABASE persistent_data_db;
+```
+
+- Select the DB:
+ ```sql
+USE persistent_data_db;
+```
+
+Create the Tables:
+```sql
+CREATE TABLE IF NOT EXISTS classification (
+  id VARCHAR(36) NOT NULL PRIMARY KEY,
+  result JSON DEFAULT NULL
+);
+
+CREATE TABLE IF NOT EXISTS connections (
+  id VARCHAR(36) NOT NULL PRIMARY KEY,
+  host VARCHAR(255) NOT NULL,
+  port INT NOT NULL,
+  user VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  data_base VARCHAR(255) NOT NULL
+);
+```
+
 # API Documentation
 
 Run this command line to start the app with your endpoints:
