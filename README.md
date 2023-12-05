@@ -31,12 +31,12 @@ This variables are to connect to the MySQL DB where will be save the results of 
 
 To create the BD to be Scanned, after of config the MySQL in localhost, run the next queries:
 
-- Create the BD named "mysql_db_1":
+Create the BD named "mysql_db_1":
 ```sql
 CREATE DATABASE mysql_db_1;
 ```
 
-- Select the DB:
+Select the DB:
  ```sql
 USE mysql_db_1;
 ```
@@ -52,14 +52,14 @@ CREATE TABLE USERS (
 );
 ```
 
-## Create MySQL BD to save results
+## Create MySQL BD to save the results
 
-- Create the BD named "persistent_data_db":
+Create the BD named "persistent_data_db":
 ```sql
 CREATE DATABASE persistent_data_db;
 ```
 
-- Select the DB:
+Select the DB:
  ```sql
 USE persistent_data_db;
 ```
