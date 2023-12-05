@@ -54,7 +54,7 @@ CREATE TABLE USERS (
 
 # API Documentation
 
-Run this command line to run the app with your endpoints:
+Run this command line to start the app with your endpoints:
 ```
 uvicorn app.main:app --reload
 ```
@@ -71,18 +71,39 @@ To solve the challenge, the API has the next endopints, that were config in the 
 
 ## Persistence Endpoint
 
+This Endpoint request the conexion data for the DB to scan (mysql_db_1). Then, this data is saved in our DB "persistent_data_db", encrypting the password, saving this data in our table "connections" and responding with status code 201:
+
+![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/0e58e4b6-d419-4b21-a349-6432ee743209)
+
+![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/ae04216b-8479-441f-8847-7e3966b3967d)
+
+
 ![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/b87182fb-327f-4c02-99b4-4f096b44baad)
 
 ## Post Scan Endpoint
+
+This Endpoint request the ID generated in the previous response and classificate the data according to this dictionary using Regex:
+```
+{
+    "username": "USERNAME",
+    "mail": "EMAIL_ADDRESS",
+    "credit": "CREDIT_CARD_NUMBER"
+}
+```
+Then, this endpoint save the results in the table "classification" in our DB "persistent_data_db":
 
 ![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/cda2679e-c658-4e1e-8e82-5396ec710664)
 
 ## Get Scan Endpoint
 
+The results can be seen with this endpoint. In this case, I add one table more named "Shipments" with additional information for to be classificated:
+
 ![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/781bfbda-0918-4ace-b8e0-9cb5a7045091)
 ![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/db054b9e-c055-4f07-92f1-c880ae0c828f)
 
 ## Get HTML Endpoint
+
+Finally, this endpoint for show the tables classificated with HTML format:
 
 ![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/85922be1-65cd-4bc2-82cc-a86b7123eae0)
 
