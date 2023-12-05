@@ -101,6 +101,10 @@ The results can be seen with this endpoint. In this case, I add one table more n
 ![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/781bfbda-0918-4ace-b8e0-9cb5a7045091)
 ![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/db054b9e-c055-4f07-92f1-c880ae0c828f)
 
+In case that some ID not to be found, the API send the error message according to code error:
+
+![image](https://github.com/IsmaelGonzalez09/challenge-meli/assets/46968561/173e5839-779c-4174-a95b-975ea0582d13)
+
 ## Get HTML Endpoint
 
 Finally, this endpoint for show the tables classificated with HTML format:
